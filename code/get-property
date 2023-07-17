@@ -1,0 +1,31 @@
+#!/usr/bin/env python3
+
+import sys
+import re
+
+class Properties(dict):
+   def __init__(self, s):
+      lines = s.splitlines()
+      for line in lines:
+         try:
+            key, value = re.split('\s*[\s=]\s*', line, 1)
+            if not key.startswith('#'):
+               self[key] = value
+         except:
+            pass
+
+class PropertiesMap(dict):
+   def __init__(self, s):
+      ss = re.split('(\[.*?])', s)
+      self[''] = Properties(ss.pop(0))
+      for x in zip(ss[::2], ss[1::2]):
+         section = x[0].lstrip('[').rstrip(']')
+         self[section] = Properties(x[1])
+
+propfile = sys.argv[1]
+segment = sys.argv[2]
+key = sys.argv[3]
+
+prop = PropertiesMap(open(propfile).read())
+
+print(prop[segment][key])

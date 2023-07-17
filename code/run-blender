@@ -1,0 +1,32 @@
+#!/bin/bash
+
+study=$1
+patient=$2
+plan=$3
+script=$4
+
+function checkfile {
+    test -r $1 && return
+    echo file $1 not found
+    exit 1
+}
+
+HOMEDIR=TODO: Enter path to collisionCheck folder here 
+
+export PYTHONPATH=$PYTHONPATH:$HOMEDIR/code
+
+blenderProperties=$HOMEDIR/config/config.properties
+checkfile $blenderProperties
+
+model=$HOMEDIR/model/$($HOMEDIR/code/get-property $blenderProperties General modelpath)
+
+blenderpath=$HOMEDIR/code/$($HOMEDIR/code/get-property $blenderProperties General blenderpath)
+
+pythonProgr=$HOMEDIR/code/$($HOMEDIR/code/get-property $blenderProperties Scripts $script)
+
+setupDir=$HOMEDIR/studies/$study/$patient/$plan
+blenderConfig=$setupDir/blender.properties
+
+echo $blenderpath $model --background --python-use-system-env --python $pythonProgr $blenderConfig $blenderProperties
+$blenderpath $model --background --python-use-system-env --python $pythonProgr $blenderConfig $blenderProperties
+ 
