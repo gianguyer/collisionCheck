@@ -11,18 +11,18 @@ function checkfile {
     exit 1
 }
 
-HOMEDIR=TODO: Enter path to collisionCheck folder here 
+HOMEDIR=path_to_collisionCheck_folder
 
 export PYTHONPATH=$PYTHONPATH:$HOMEDIR/code
 
 blenderProperties=$HOMEDIR/config/config.properties
 checkfile $blenderProperties
 
-model=$HOMEDIR/model/$($HOMEDIR/code/get-property $blenderProperties General modelpath)
+model=$HOMEDIR/$($HOMEDIR/code/get-property $blenderProperties General modelpath)
 
-blenderpath=$HOMEDIR/code/$($HOMEDIR/code/get-property $blenderProperties General blenderpath)
+blenderpath=$($HOMEDIR/code/get-property $blenderProperties General blenderpath)
 
-pythonProgr=$HOMEDIR/code/$($HOMEDIR/code/get-property $blenderProperties Scripts $script)
+pythonProgr=$HOMEDIR/$($HOMEDIR/code/get-property $blenderProperties Scripts $script)
 
 setupDir=$HOMEDIR/studies/$study/$patient/$plan
 blenderConfig=$setupDir/blender.properties
