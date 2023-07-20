@@ -11,6 +11,19 @@ function checkfile {
     exit 1
 }
 
+function get_config_value() {
+    local file="$1"
+    local section="$2"
+    local key="$3"
+
+    section_escaped=$(printf '%s\n' "$section" | sed -e 's/[]\/$*.^[]/\\&/g')
+    key_escaped=$(printf '%s\n' "$key" | sed -e 's/[]\/$*.^[]/\\&/g')
+    
+    local value=$(grep -E "^\[$section_escaped\]" -A 1000 "$file" | grep -E "^\s*$key_escaped\s*=" | sed -e 's/^[[:space:]]*'"$key_escaped"'[[:space:]]*=[[:space:]]*//')
+
+    echo "$value"
+}
+
 HOMEDIR=path_to_collisionCheck_folder
 
 export PYTHONPATH=$PYTHONPATH:$HOMEDIR/code
@@ -18,11 +31,11 @@ export PYTHONPATH=$PYTHONPATH:$HOMEDIR/code
 blenderProperties=$HOMEDIR/config/config.properties
 checkfile $blenderProperties
 
-model=$HOMEDIR/$($HOMEDIR/code/get-property $blenderProperties General modelpath)
-
-blenderpath=$($HOMEDIR/code/get-property $blenderProperties General blenderpath)
-
-pythonProgr=$HOMEDIR/$($HOMEDIR/code/get-property $blenderProperties Scripts $script)
+model=$HOMEDIR/$(get_config_value $blenderProperties General modelpath)
+echo $model
+blenderpath=$(get_config_value $blenderProperties General blenderpath)
+echo $blenderpath
+pythonProgr=$HOMEDIR/$(get_config_value $blenderProperties Scripts $script)
 
 setupDir=$HOMEDIR/studies/$study/$patient/$plan
 blenderConfig=$setupDir/blender.properties
