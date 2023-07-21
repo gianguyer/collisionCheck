@@ -106,14 +106,14 @@ namespace VMS.TPS
         string planName;
         string studyDir;
 
-        string localDir = "path_to_local_directory";
-        string remote = "user_for_remote_connection";
-		string remoteDir = "path_on_remote_location_to_collisionCheck_folder";
+        string localDir = "d:\\klik\\dev\\test";
+        string remote = "gian@mc27.ams.unibe.ch";
+		string remoteDir = "collisionCheck";
 		string blenderTask = "collisionMap";
 
         Window wind;
 
-        bool debug = true;
+        bool debug = false;
 
         public Script()
         {
