@@ -106,10 +106,10 @@ namespace VMS.TPS
         string planName;
         string studyDir;
 
-        string localDir = "d:\\klik\\dev\\test";
-        string remote = "gian@mc27.ams.unibe.ch";
-		string remoteDir = "collisionCheck";
-		string blenderTask = "collisionMap";
+        string localDir = "local_path_for_data";
+        string remote = "ssh_remote_connection";
+        string remoteDir = "remote_path_for_data";
+        string blenderTask = "collisionMap";
 
         Window wind;
 

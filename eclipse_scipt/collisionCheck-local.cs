@@ -106,8 +106,8 @@ namespace VMS.TPS
         string planName;
         string studyDir;
 
-        string localDir = "d:\\klik\\dev\\collisionCheck-main";
-		string blenderTask = "collisionMap";
+        string localDir = "local_path_for_data";
+        string blenderTask = "collisionMap";
 
         Window wind;
 
