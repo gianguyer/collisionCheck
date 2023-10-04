@@ -22,11 +22,11 @@ Following paths need to be set to run the program:
 - HOMEDIR in run-blender script: The path to the collisionCheck folder needs to be specified, e.g. /home/collisionCheck
 
 Run:
-Run the collision check: ./code/run-blender <study> <patient> <plan> <script>
-- <study>: specify the study, e.g. demo
-- <patient>: specify the patient, e.g. Patient_0
-- <plan>: specify the plan, e.g. Plan_1
-- <script>: specify which script to run, either collisionMap or pathCheck
+Run the collision check: ./code/run-blender study patient plan script
+- study: specify the study, e.g. demo
+- patient: specify the patient, e.g. Patient_0
+- plan: specify the plan, e.g. Plan_1
+- script: specify which script to run, either collisionMap or pathCheck
 
 
 Eclipse Script:
